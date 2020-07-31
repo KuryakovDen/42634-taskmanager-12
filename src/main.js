@@ -1,3 +1,5 @@
+'use strict'
+
 const COUNT_OF_TASKS = 3;
 
 const renderComponent = (container, template, place = `beforeend`) => {
@@ -6,7 +8,6 @@ const renderComponent = (container, template, place = `beforeend`) => {
 
 const siteMainElement = document.querySelector(`.main`);
 const siteMainControl = siteMainElement.querySelector(`.main__control`);
-const siteFiltersComponent = siteMainElement.querySelector(`.filter`);
 
 const renderMenuComponent = () => {
   return `
@@ -35,7 +36,7 @@ const renderMenuComponent = () => {
     <label for="control__statistic" class="control__label">STATISTICS</label>
   </section>
   `;
-}
+};
 
 const renderFiltersComponent = () => {
   return `
