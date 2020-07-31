@@ -1,4 +1,4 @@
-const COUNT_OF_TASKS = 8;
+const COUNT_OF_TASKS = 3;
 
 const renderComponent = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
@@ -349,6 +349,12 @@ const renderTaskComponent = () => {
   `;
 };
 
+const renderLoadingComponent = () => {
+  return `
+    <button class="load-more" type="button">load more</button>
+  `;
+};
+
 renderComponent(siteMainControl, renderMenuComponent());
 renderComponent(siteMainElement, renderFiltersComponent());
 renderComponent(siteMainElement, renderBoardComponent());
@@ -361,6 +367,10 @@ renderComponent(siteBoard, renderBoardTasksComponent());
 
 const siteBoardTasks = siteMainElement.querySelector(`.board__tasks`);
 
+renderComponent(siteBoardTasks, renderEditTaskComponent());
+
 for (let i = 0; i < COUNT_OF_TASKS; i++) {
   renderComponent(siteBoardTasks, renderTaskComponent());
 }
+
+renderComponent(siteBoard, renderLoadingComponent());
