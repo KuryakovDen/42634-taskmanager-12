@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const COUNT_OF_TASKS = 3;
 
