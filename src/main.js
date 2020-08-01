@@ -1,5 +1,3 @@
-'use strict';
-
 const COUNT_OF_TASKS = 3;
 
 const renderComponent = (container, template, place = `beforeend`) => {
