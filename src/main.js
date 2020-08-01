@@ -1,5 +1,6 @@
 import {renderMenuComponent} from './view/menu.js';
 import {renderFiltersComponent} from './view/filters.js';
+import {renderBoardComponent} from './view/board.js';
 
 const COUNT_OF_TASKS = 3;
 
@@ -9,12 +10,6 @@ const renderComponent = (container, template, place = `beforeend`) => {
 
 const siteMainElement = document.querySelector(`.main`);
 const siteMainControl = siteMainElement.querySelector(`.main__control`);
-
-const renderBoardComponent = () => {
-  return `
-    <section class="board container"></section>
-  `;
-};
 
 const renderSortingComponent = () => {
   return `
