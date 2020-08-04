@@ -6,6 +6,8 @@ import {renderBoardTasksComponent} from './view/board-tasks.js';
 import {renderEditTaskComponent} from './view/edit-task.js';
 import {renderTaskComponent} from './view/task.js';
 import {renderLoadingComponent} from './view/loading.js';
+import {generateTask} from './mock/task.js';
+
 
 const COUNT_OF_TASKS = 3;
 
@@ -35,3 +37,6 @@ for (let i = 0; i < COUNT_OF_TASKS; i++) {
 }
 
 renderComponent(siteBoard, renderLoadingComponent());
+
+
+console.log(generateTask());

@@ -14,8 +14,7 @@ const renderTaskComponent = () => {
             </button>
             <button
               type="button"
-              class="card__btn card__btn--favorites card__btn--disabled"
-            >
+              class="card__btn card__btn--favorites card__btn--disabled">
               favorites
             </button>
           </div>
