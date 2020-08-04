@@ -1,5 +1,22 @@
-import {getRandomElement, getRandomBoolean} from '../utils/util.js';
+import {getRandomElement, getRandomBoolean, getRandomInteger} from '../utils/util.js';
 import {taskGoals, tags, cardColors} from '../utils/common.js';
+
+const generateDate = () => {
+  const maxDaysGap = 7;
+  const daysGap = getRandomInteger(-maxDaysGap, maxDaysGap);
+  const currentDate = new Date();
+  const isDate = getRandomBoolean();
+
+  if (!isDate) {
+    return null;
+  }
+
+  currentDate.setHours(23, 59, 59, 999);
+
+  currentDate.setDate(currentDate.getDate() + daysGap);
+
+  return new Date(currentDate);
+};
 
 const generateTask = () => {
   return {
@@ -21,4 +38,4 @@ const generateTask = () => {
   };
 };
 
-export {generateTask};
+export {generateTask, generateDate};
