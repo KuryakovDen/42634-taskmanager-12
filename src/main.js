@@ -11,8 +11,6 @@ import {generateTask} from './mock/task.js';
 
 const COUNT_OF_TASKS = 3;
 
-const tasks = new Array(COUNT_OF_TASKS).fill().map(generateTask);
-
 const renderComponent = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
 };
@@ -33,6 +31,8 @@ renderComponent(siteBoard, renderBoardTasksComponent());
 const siteBoardTasks = siteMainElement.querySelector(`.board__tasks`);
 
 renderComponent(siteBoardTasks, renderEditTaskComponent());
+
+const tasks = new Array(COUNT_OF_TASKS).fill().map(generateTask);
 
 for (let i = 0; i < COUNT_OF_TASKS; i++) {
   renderComponent(siteBoardTasks, renderTaskComponent(tasks[i]));

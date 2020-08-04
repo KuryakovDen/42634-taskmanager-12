@@ -46,7 +46,6 @@ const generateTask = () => {
     description: getRandomElement(taskGoals),
     dueDate,
     repeatingDays,
-    tags: getRandomElement(tags),
     color: getRandomElement(cardColors),
     isFavorite: getRandomBoolean(),
     isArchive: getRandomBoolean()
