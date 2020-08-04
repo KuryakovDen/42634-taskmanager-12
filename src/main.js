@@ -39,4 +39,4 @@ for (let i = 0; i < COUNT_OF_TASKS; i++) {
 renderComponent(siteBoard, renderLoadingComponent());
 
 
-console.log(generateDate());
+console.log(generateTask());
