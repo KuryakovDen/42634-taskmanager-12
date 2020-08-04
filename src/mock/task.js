@@ -12,7 +12,6 @@ const generateDate = () => {
   }
 
   currentDate.setHours(23, 59, 59, 999);
-
   currentDate.setDate(currentDate.getDate() + daysGap);
 
   return new Date(currentDate);
@@ -31,10 +30,22 @@ const generateRepeatingDays = () => {
 };
 
 const generateTask = () => {
+  const dueDate = generateDate();
+  const repeatingDays = dueDate === null
+    ? generateRepeatingDays() : {
+      mo: false,
+      tu: false,
+      we: false,
+      th: false,
+      fr: false,
+      sa: false,
+      su: false
+    };
+
   return {
     description: getRandomElement(taskGoals),
-    dueDate: generateDate(),
-    repeatingDays: generateRepeatingDays(),
+    dueDate,
+    repeatingDays,
     tags: getRandomElement(tags),
     color: getRandomElement(cardColors),
     isFavorite: getRandomBoolean(),
