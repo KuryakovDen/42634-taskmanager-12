@@ -6,10 +6,12 @@ import {renderBoardTasksComponent} from './view/board-tasks.js';
 import {renderEditTaskComponent} from './view/edit-task.js';
 import {renderTaskComponent} from './view/task.js';
 import {renderLoadingComponent} from './view/loading.js';
-import {generateTask, generateDate} from './mock/task.js';
+import {generateTask} from './mock/task.js';
 
 
 const COUNT_OF_TASKS = 3;
+
+const tasks = new Array(COUNT_OF_TASKS).fill().map(generateTask);
 
 const renderComponent = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
@@ -33,10 +35,10 @@ const siteBoardTasks = siteMainElement.querySelector(`.board__tasks`);
 renderComponent(siteBoardTasks, renderEditTaskComponent());
 
 for (let i = 0; i < COUNT_OF_TASKS; i++) {
-  renderComponent(siteBoardTasks, renderTaskComponent());
+  renderComponent(siteBoardTasks, renderTaskComponent(tasks[i]));
 }
 
 renderComponent(siteBoard, renderLoadingComponent());
 
 
-console.log(generateTask());
+console.log(generateTask(), tasks);
