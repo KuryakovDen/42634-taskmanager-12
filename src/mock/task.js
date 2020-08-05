@@ -1,5 +1,5 @@
 import {getRandomElement, getRandomBoolean, getRandomInteger} from '../utils/util.js';
-import {taskGoals, tags, cardColors} from '../utils/common.js';
+import {taskGoals, cardColors} from '../utils/common.js';
 
 const generateDate = () => {
   const maxDaysGap = 7;
