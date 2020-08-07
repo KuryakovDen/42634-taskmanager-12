@@ -1,19 +1,5 @@
 import {cardColors} from '../utils/common.js';
-
-const isExpired = (dueDate) => {
-  if (dueDate === null) {
-    return false;
-  }
-
-  const currentDate = new Date();
-  currentDate.setHours(23, 59, 59, 999);
-
-  return currentDate > dueDate.getTime();
-};
-
-const isRepeating = (repeatingDays) => {
-  return Object.values(repeatingDays).some(Boolean);
-};
+import {checkTaskExpire, checkTaskRepeat, prepareTaskDate} from '../utils/util.js';
 
 const createTaskEditDateTemplate = (dueDate) => {
   return `
@@ -29,7 +15,7 @@ const createTaskEditDateTemplate = (dueDate) => {
           type="text"
           placeholder=""
           name="date"
-          value="${dueDate.toLocaleString(`en-US`, {day: `numeric`, month: `long`})}"
+          value="${prepareTaskDate(dueDate)}"
         />
       </label>
     </fieldset>` : ``}
@@ -39,10 +25,10 @@ const createTaskEditDateTemplate = (dueDate) => {
 const createTaskEditRepaetTemplate = (repeatingDays) => {
   return `
   <button class="card__repeat-toggle" type="button">
-    repeat:<span class="card__repeat-status">${isRepeating(repeatingDays) ? `yes` : `no`}</span>
+    repeat:<span class="card__repeat-status">${checkTaskRepeat(repeatingDays) ? `yes` : `no`}</span>
   </button>
 
-  ${isRepeating(repeatingDays) ? `
+  ${checkTaskRepeat(repeatingDays) ? `
   <fieldset class="card__repeat-days">
     <div class="card__repeat-days-inner">
       ${Object.entries(repeatingDays).map(([day, repeat]) => `<input
@@ -79,8 +65,8 @@ const renderEditTaskComponent = (taskEdit = {}) => {
 
   const {description, color, dueDate, repeatingDays} = taskEdit;
 
-  const deadLineClassName = isExpired(dueDate) ? `card--deadline` : ``;
-  const repeatingClassName = isRepeating(repeatingDays) ? `card--repeat` : ``;
+  const deadLineClassName = checkTaskExpire(dueDate) ? `card--deadline` : ``;
+  const repeatingClassName = checkTaskRepeat(repeatingDays) ? `card--repeat` : ``;
 
   const dateTemplate = createTaskEditDateTemplate(dueDate);
   const repeatTemplate = createTaskEditRepaetTemplate(repeatingDays);

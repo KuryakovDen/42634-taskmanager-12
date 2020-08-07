@@ -1,20 +1,4 @@
-export {renderTaskComponent};
-
-const isExpired = (dueDate) => {
-  if (dueDate === null) {
-    return false;
-  }
-
-  let currentDate = new Date();
-  currentDate.setHours(23, 59, 59, 999);
-  currentDate = new Date(currentDate);
-
-  return currentDate.getTime() > dueDate.getTime();
-};
-
-const isRepeating = (repeatingDays) => {
-  return Object.values(repeatingDays).some(Boolean);
-};
+import {checkTaskExpire, checkTaskRepeat, prepareTaskDate} from '../utils/util.js';
 
 const renderTaskComponent = (task) => {
   const {color, description, dueDate, repeatingDays, isArchive, isFavorite} = task;
@@ -27,13 +11,11 @@ const renderTaskComponent = (task) => {
     ? `card__btn--favorites card__btn--disabled`
     : `card__btn--favorites`;
 
-  const date = dueDate !== null
-  ? dueDate.toLocaleString(`en-US`, {day: `numeric`, month: `long`})
-  : ``;
+  const date = dueDate !== null ? prepareTaskDate(dueDate) : ``;
 
-  const deadlineClassName = isExpired(dueDate) ? `card--deadline` : ``
+  const deadlineClassName = checkTaskExpire(dueDate) ? `card--deadline` : ``
 
-  const repeatClassName = isRepeating(repeatingDays) ? `card--repeat` : ``;
+  const repeatClassName = checkTaskRepeat(repeatingDays) ? `card--repeat` : ``;
 
   return `
     <article class="card card--${color} ${deadlineClassName} ${repeatClassName}">
@@ -78,3 +60,5 @@ const renderTaskComponent = (task) => {
     </article>
   `;
 };
+
+export {renderTaskComponent};

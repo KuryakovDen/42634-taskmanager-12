@@ -14,4 +14,30 @@ const getRandomBoolean = () => {
   return Math.random() >= 0.5;
 };
 
-export {getRandomElement, getRandomBoolean, getRandomInteger};
+const checkTaskExpire = (dueDate) => {
+  if (dueDate === null) {
+    return false;
+  }
+
+  const currentDate = new Date();
+  currentDate.setHours(23, 59, 59, 999);
+
+  return currentDate > dueDate.getTime();
+};
+
+const checkTaskRepeat = (repeatingDays) => {
+  return Object.values(repeatingDays).some(Boolean);
+};
+
+const prepareTaskDate = (taskDate) => {
+  return taskDate.toLocaleString(`en-US`, {day: `numeric`, month: `long`});
+};
+
+export {
+  getRandomElement,
+  getRandomBoolean,
+  getRandomInteger,
+  checkTaskExpire,
+  checkTaskRepeat,
+  prepareTaskDate
+};
