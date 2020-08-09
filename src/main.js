@@ -19,8 +19,11 @@ const renderComponent = (container, template, place = `beforeend`) => {
 const siteMainElement = document.querySelector(`.main`);
 const siteMainControl = siteMainElement.querySelector(`.main__control`);
 
+const tasks = new Array(COUNT_OF_TASKS).fill().map(generateTask);
+const filters = generateFilter(tasks);
+
 renderComponent(siteMainControl, renderMenuComponent());
-renderComponent(siteMainElement, renderFiltersComponent());
+renderComponent(siteMainElement, renderFiltersComponent(filters));
 renderComponent(siteMainElement, renderBoardComponent());
 
 const siteBoard = siteMainElement.querySelector(`.board`);
@@ -30,8 +33,6 @@ renderComponent(siteBoard, renderSortingComponent());
 renderComponent(siteBoard, renderBoardTasksComponent());
 
 const siteBoardTasks = siteMainElement.querySelector(`.board__tasks`);
-
-const tasks = new Array(COUNT_OF_TASKS).fill().map(generateTask);
 
 renderComponent(siteBoardTasks, renderEditTaskComponent(tasks[0]));
 
