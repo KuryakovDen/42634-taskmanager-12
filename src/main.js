@@ -55,11 +55,11 @@ if (tasks.length > SHOW_TASKS_STEP) {
         renderComponent(siteBoardTasks, renderTaskComponent(task));
       });
 
-      renderedTaskCount += SHOW_TASKS_STEP;
+    renderedTaskCount += SHOW_TASKS_STEP;
 
-      if (renderedTaskCount >= tasks.length) {
-        loadMoreButton.remove();
-      }
+    if (renderedTaskCount >= tasks.length) {
+      loadMoreButton.remove();
+    }
   };
 
   loadMoreButton.addEventListener(`click`, onClickLoadButton);

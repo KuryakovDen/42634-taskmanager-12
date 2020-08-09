@@ -13,7 +13,7 @@ const renderTaskComponent = (task) => {
 
   const date = dueDate !== null ? prepareTaskDate(dueDate) : ``;
 
-  const deadlineClassName = checkTaskExpire(dueDate) ? `card--deadline` : ``
+  const deadlineClassName = checkTaskExpire(dueDate) ? `card--deadline` : ``;
 
   const repeatClassName = checkTaskRepeat(repeatingDays) ? `card--repeat` : ``;
 

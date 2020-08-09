@@ -70,7 +70,7 @@ const renderEditTaskComponent = (taskEdit = {}) => {
 
   const dateTemplate = createTaskEditDateTemplate(dueDate);
   const repeatTemplate = createTaskEditRepaetTemplate(repeatingDays);
-  const colorTemplate= createTaskEditColorTemplate(color, cardColors);
+  const colorTemplate = createTaskEditColorTemplate(color, cardColors);
 
   return `
     <article class="card card--edit card--${color} ${deadLineClassName} ${repeatingClassName}">
