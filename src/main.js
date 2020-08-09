@@ -7,6 +7,7 @@ import {renderEditTaskComponent} from './view/edit-task.js';
 import {renderTaskComponent} from './view/task.js';
 import {renderLoadingComponent} from './view/loading.js';
 import {generateTask} from './mock/task.js';
+import {generateFilter} from './mock/filters.js';
 
 
 const COUNT_OF_TASKS = 4;
@@ -39,6 +40,3 @@ for (let i = 1; i < COUNT_OF_TASKS; i++) {
 }
 
 renderComponent(siteBoard, renderLoadingComponent());
-
-
-console.log(generateTask(), tasks);

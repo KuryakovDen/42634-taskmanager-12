@@ -14,6 +14,13 @@ const getRandomBoolean = () => {
   return Math.random() >= 0.5;
 };
 
+const getCurrentDate = () => {
+  const currentDate = new Date();
+  currentDate.setHours(23, 59, 59, 999);
+
+  return new Date(currentDate);
+};
+
 const checkTaskExpire = (dueDate) => {
   if (dueDate === null) {
     return false;
@@ -23,6 +30,16 @@ const checkTaskExpire = (dueDate) => {
   currentDate.setHours(23, 59, 59, 999);
 
   return currentDate > dueDate.getTime();
+};
+
+const checkTaskExpiringToday = (dueDate) => {
+  if (dueDate === null) {
+    return false;
+  }
+
+  const currentDate = getCurrentDate();
+
+  return currentDate.getTime() === dueDate.getTime();
 };
 
 const checkTaskRepeat = (repeatingDays) => {
@@ -39,5 +56,7 @@ export {
   getRandomInteger,
   checkTaskExpire,
   checkTaskRepeat,
-  prepareTaskDate
+  prepareTaskDate,
+  checkTaskExpiringToday,
+  getCurrentDate
 };
