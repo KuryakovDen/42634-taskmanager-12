@@ -10,7 +10,8 @@ import {generateTask} from './mock/task.js';
 import {generateFilter} from './mock/filters.js';
 
 
-const COUNT_OF_TASKS = 4;
+const COUNT_OF_TASKS = 22;
+const SHOW_TASKS_STEP = 8;
 
 const renderComponent = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
@@ -36,8 +37,30 @@ const siteBoardTasks = siteMainElement.querySelector(`.board__tasks`);
 
 renderComponent(siteBoardTasks, renderEditTaskComponent(tasks[0]));
 
-for (let i = 1; i < COUNT_OF_TASKS; i++) {
+for (let i = 1; i < Math.min(tasks.length, SHOW_TASKS_STEP); i++) {
   renderComponent(siteBoardTasks, renderTaskComponent(tasks[i]));
 }
 
-renderComponent(siteBoard, renderLoadingComponent());
+if (tasks.length > SHOW_TASKS_STEP) {
+  let renderedTaskCount = SHOW_TASKS_STEP;
+  renderComponent(siteBoard, renderLoadingComponent());
+
+  const loadMoreButton = siteBoard.querySelector(`.load-more`);
+
+  const onClickLoadButton = (e) => {
+    e.preventDefault();
+    tasks
+      .slice(renderedTaskCount, renderedTaskCount + SHOW_TASKS_STEP)
+      .forEach((task) => {
+        renderComponent(siteBoardTasks, renderTaskComponent(task));
+      });
+
+      renderedTaskCount += SHOW_TASKS_STEP;
+
+      if (renderedTaskCount >= tasks.length) {
+        loadMoreButton.remove();
+      }
+  };
+
+  loadMoreButton.addEventListener(`click`, onClickLoadButton);
+}
